@@ -1,3 +1,5 @@
+//setup paramétrage
+
 const express = require("express");
 const app = express();
 const formidable = require("express-formidable");
@@ -6,9 +8,10 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost/airbnb");
 
-app.get("/", (req, res) => {
-  res.status(200).json("hello the world");
-});
+// importation des routes
+
+const userRoutes = require("./routes/user");
+app.use(userRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).json("page not found");
